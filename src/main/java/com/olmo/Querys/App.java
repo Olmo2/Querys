@@ -70,9 +70,15 @@ public class App {
 		 query.setFirstResult(paginaAMostrar * tamanyoPagina);
 		 List<Departamento> depts =query.list();
 
-		for(Departamento profesor : depts){
-		 System.out.println(profesor.getNombre());
+		for(Departamento dept : depts){
+		 System.out.println(dept.getNombre());
 		}
+		 
+		/*Numero de páginas*/
+		 long numTotalObjetos =(Long)session.createQuery("SELECT count(*) FROM Departamento d").uniqueResult();
+		 int numPaginas =(int)Math.ceil((double)numTotalObjetos /(double)tamanyoPagina);
+		 
+		 
 		 session.close();
 		 sessionFactory.close();
 	}
